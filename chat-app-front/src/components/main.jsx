@@ -1,20 +1,26 @@
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { Route, Routes } from 'react-router-native';
 
 import theme from '../theme';
 
+//COMPONENTS
+import Feed from './Feed';
+import NewPost from './NewPost';
+
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flexGrow: 1,
       backgroundColor: theme.colors.darkgrey,
-      alignItems: 'center',
-      justifyContent: 'center',
     },
-  });
+});
 
 const Main = () => {
     return (
         <View style={styles.container}>
-            <Text>Haistaisitko Fredrickson persettä!</Text>
+            <Routes>
+              <Route path='/' element={<Feed />} />
+              <Route path='/new-post' element={<NewPost />} />
+            </Routes>
         </View>
     );
 };
