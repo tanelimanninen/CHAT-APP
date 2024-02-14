@@ -23,7 +23,7 @@ const NewPost = () => {
             <Link to='/'>
                 <Image 
                     style={styles.arrowIcon}
-                    source={require('../../assets/CHAT_ICON_TRANSPARENT.png')}
+                    source={require('../../assets/icons8-back-96.png')}
                 />
             </Link>
             <Text>Logoa painamalla pääset takaisin feediin</Text>

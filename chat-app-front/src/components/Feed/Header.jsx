@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 const Header = () => {
     return (
         <View style={styles.container}>
-            <Text fontSize='subheading' fontWeight='bold'>Feed</Text>
+            <Text fontSize='heading' fontWeight='bold'>Feed</Text>
         </View>
     );
 };

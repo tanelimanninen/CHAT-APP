@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput as NativeTextInput } from "react-native";
+import { StyleSheet, View, TextInput as NativeTextInput, Image } from "react-native";
 
 import Text from "../Text";
 
@@ -6,24 +6,32 @@ import theme from "../../theme";
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'center',
-        paddingTop: 10,
-        paddingBottom: 20,
-        //backgroundColor: theme.colors.green
-    },
-    input: {
-        height: 40,
-        width: 350,
-        paddingStart: 20,
+        marginHorizontal: 20,
+        marginTop: 10,
+        marginBottom: 20,
         borderRadius: 30,
-        backgroundColor: theme.colors.creamywhite
-    }
+        backgroundColor: theme.colors.creamywhite,
+      },
+      input: {
+        flex: 1, 
+        height: 40,
+      },
+      icon: {
+        width: 20,
+        height: 20,
+        marginHorizontal: 15
+      },
 });
 
 const SearchBar = () => {
     return (
         <View style={styles.container}>
+            <Image
+                source={require('../../../assets/icons8-search-30.png')}
+                style={styles.icon}
+            />
             <NativeTextInput
                 style={styles.input} 
                 placeholder="Search..."
