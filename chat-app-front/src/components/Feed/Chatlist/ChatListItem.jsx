@@ -1,4 +1,5 @@
 import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { Link } from "react-router-native";
 
 import Text from '../../Text';
 import theme from '../../../theme';
@@ -27,8 +28,8 @@ const styles = StyleSheet.create({
     },
     textContainer: {
         flexGrow: 1,
-        //alignItems: 'center',
-        justifyContent: 'center',
+        flexDirection: 'column',
+        justifyContent: 'space-around',
         maxWidth: 260
     },
     bottomRowContainer: {
@@ -72,13 +73,14 @@ const styles = StyleSheet.create({
 });
 
 
-const CardTopRow = ({ text, image }) => {
+const CardTopRow = ({ text, image, username }) => {
     return (
         <View style={styles.topRowContainer}>
             <View style={styles.avatarContainer}>
                 <Image style={styles.avatar} source={{ uri: image }} />
             </View>
            <View style={styles.textContainer}>
+                <Text color='textBlack' fontWeight='bold'>{username}</Text>
                 <Text color='textBlack'>{text}</Text>
            </View>
         </View>
@@ -97,7 +99,9 @@ const CardBottomRow = ({ likes, dislikes }) => {
                 <Text color='textBlack'>{dislikes}</Text>
             </Pressable>
             <Pressable style={styles.commentButton}>
-                <Image style={styles.icon} source={require('../../../../assets/icons8-message-96.png')} />
+                <Link to='/chat/:id'>
+                    <Image style={styles.icon} source={require('../../../../assets/icons8-message-96.png')} />
+                </Link>
             </Pressable>
         </View>
     );
@@ -109,6 +113,7 @@ const ChatListItem = ({ chat }) => {
             <CardTopRow
                 image={chat.image}
                 text={chat.text}
+                username={chat.username}
             />
             <CardBottomRow
                 likes={chat.likes}

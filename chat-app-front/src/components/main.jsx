@@ -6,6 +6,7 @@ import theme from '../theme';
 //COMPONENTS
 import Feed from './Feed';
 import NewPost from './NewPost';
+import SingleChatView from './SingleChatView';
 
 const styles = StyleSheet.create({
     container: {
@@ -20,6 +21,7 @@ const Main = () => {
             <Routes>
               <Route path='/' element={<Feed />} />
               <Route path='/new-post' element={<NewPost />} />
+              <Route path='/chat/:id' element={<SingleChatView />} />
             </Routes>
         </View>
     );
