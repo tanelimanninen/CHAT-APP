@@ -1,27 +1,24 @@
-import { StyleSheet, View, FlatList, SafeAreaView, } from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
 import ChatListItem from "./ChatListItem";
 
 //MOCK DATA, TÄSSÄ VAIHEESSA KOVAKOODATTU DATA HAETAAN TIEDOSTOSTA
-import chats from "../../../data";
-
-import Text from "../../Text";
-
-import theme from "../../../theme";
+import data from "../../../data";
 
 const styles = StyleSheet.create({
     separator: {
       height: 10,
     },
     container: {
+        flex: 1,
         alignItems: 'center',
-        paddingTop: 20,
+        //paddingTop: 20,
         padding: 10,
         //backgroundColor: theme.colors.persimmon
     }
 });    
 
-
+const chats = data.chats
 
 const ItemSeparator = () => <View style={styles.separator} />;
 

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingTop: 50,
+        paddingTop: 60,
         paddingBottom: 35,
         //backgroundColor: theme.colors.bloodishred
     },
