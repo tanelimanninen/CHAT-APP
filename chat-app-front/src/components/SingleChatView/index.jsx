@@ -11,6 +11,10 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
     },
+    listContainer: {
+        flex: 1,
+        marginTop: 25
+    }
 });
 
 const chat = data.chats[1]
@@ -21,12 +25,13 @@ const SingleChatView = () => {
         <View style={styles.container}>
             <Header />
             <Post chat={chat} />
-            <FlatList 
+            <CommentForm />
+            <FlatList
+                style={styles.listContainer} 
                 data={comments}
                 renderItem={({ item }) => <Comment comment={item} />}
                 keyExtractor={({ id }) => id}
             />
-        <CommentForm />
         </View>
     );
 };

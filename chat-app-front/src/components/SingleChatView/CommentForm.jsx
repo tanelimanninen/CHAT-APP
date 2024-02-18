@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput as NativeTextInput } from "react-native";
+import { StyleSheet, View, TextInput as NativeTextInput, Pressable, Image } from "react-native";
 
 import Text from "../Text";
 
@@ -6,20 +6,50 @@ import theme from "../../theme";
 
 const styles = StyleSheet.create({
     container: {
-        width: 300,
+        flexDirection: 'row',
+        alignItems: 'center',
         marginTop: 20,
-        marginStart: 35,
-        backgroundColor: theme.colors.green
+        marginStart: 20,
+        //backgroundColor: theme.colors.green
     },
     inputContainer: {
+        width: 250,
+        height: 60,
+        paddingHorizontal: 15,
+        borderRadius: 10,
+        backgroundColor: theme.colors.creamywhite
+    },
 
+    buttonContainer : {
+        alignItems: 'flex-start',
+    },
+    commentButton: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: 80,
+        height: 40,
+        marginStart: 15,
+        borderRadius: 30,
+        backgroundColor: theme.colors.persimmon
+    },
+    icon: {
+        width: 30,
+        height: 30,
     }
 });
 
 const CommentForm = () => {
     return (
         <View style={styles.container}>
-            <Text>Uutta komenttia</Text>
+            <NativeTextInput
+                style={styles.inputContainer} 
+                placeholder="Write a comment here..."
+            />
+            <View style={styles.buttonContainer}>
+                <Pressable style={styles.commentButton}>
+                    <Image style={styles.icon} source={require('../../../assets/icons8-message-96.png')} />
+                </Pressable>
+            </View>
         </View>
     );
 };
