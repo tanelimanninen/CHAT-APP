@@ -7,6 +7,7 @@ import theme from '../theme';
 import Feed from './Feed';
 import NewPost from './NewPost';
 import SingleChatView from './SingleChatView';
+import SignIn from './SignIn';
 
 const styles = StyleSheet.create({
     container: {
@@ -22,6 +23,7 @@ const Main = () => {
               <Route path='/' element={<Feed />} />
               <Route path='/new-post' element={<NewPost />} />
               <Route path='/chat/:id' element={<SingleChatView />} />
+              <Route path='/sign-in' element={<SignIn />} />
             </Routes>
         </View>
     );

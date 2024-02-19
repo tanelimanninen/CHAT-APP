@@ -1,6 +1,6 @@
 import { StyleSheet, View, FlatList } from "react-native";
 
-import Header from "./Header";
+import Header from "../Header";
 import Post from "./Post";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
@@ -23,7 +23,7 @@ const comments = data.comments
 const SingleChatView = () => {
     return (
         <View style={styles.container}>
-            <Header />
+            <Header text='Comments' />
             <Post chat={chat} />
             <CommentForm />
             <FlatList

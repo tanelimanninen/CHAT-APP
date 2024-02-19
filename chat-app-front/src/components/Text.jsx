@@ -12,6 +12,9 @@ const styles = StyleSheet.create({
     textBlack: {
         color: theme.colors.darkgrey
     },
+    textBlue: {
+        color: theme.colors.ashblue
+    },
     textError: {
         color: theme.colors.bloodishred
     },
@@ -33,6 +36,7 @@ const styles = StyleSheet.create({
     const textStyle = [
       styles.textWhite,
       color === 'textBlack' && styles.textBlack,
+      color === 'textBlue' && styles.textBlue,
       color === 'textError' && styles.textError,
       color === 'textSuccess' && styles.textSuccess,
       fontSize === 'subheading' && styles.Subheading,

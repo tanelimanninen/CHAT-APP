@@ -23,7 +23,7 @@ const NavBar = () => {
         <View style={styles.container}>
             <ImageTab imageSource={require('../../../../assets/CHAT_ICON_TRANSPARENT.png')} route='/' />
             <NavBarTab text='New Post' route='/new-post' />
-            <NavBarTab text='Sign Out' />
+            <NavBarTab text='Sign Out' route='/sign-in' />
         </View>
     );
 };

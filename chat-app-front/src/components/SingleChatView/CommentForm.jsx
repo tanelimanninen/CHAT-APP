@@ -1,4 +1,4 @@
-import { StyleSheet, View, TextInput as NativeTextInput, Pressable, Image } from "react-native";
+import { StyleSheet, View, TextInput as NativeTextInput, Pressable, Image, Platform } from "react-native";
 
 import Text from "../Text";
 
@@ -13,13 +13,15 @@ const styles = StyleSheet.create({
         //backgroundColor: theme.colors.green
     },
     inputContainer: {
-        width: 250,
-        height: 60,
+        textAlignVertical: 'top',
+        width: 260,
+        height: 80,
         paddingHorizontal: 15,
+        paddingTop: 15,
+        paddingBottom: 15,
         borderRadius: 10,
         backgroundColor: theme.colors.creamywhite
     },
-
     buttonContainer : {
         alignItems: 'flex-start',
     },
@@ -44,6 +46,7 @@ const CommentForm = () => {
             <NativeTextInput
                 style={styles.inputContainer} 
                 placeholder="Write a comment here..."
+                multiline
             />
             <View style={styles.buttonContainer}>
                 <Pressable style={styles.commentButton}>

@@ -22,7 +22,8 @@ const theme = {
       lightblue: '#DFECFF',
       darkgrey: '#363636',
       creamywhite: '#FFFAEE',
-      green: '#50B414'
+      green: '#50B414',
+      blue: '#0061F4'
     },
     fonts: {
       main: adjustPlatformFont()

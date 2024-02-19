@@ -3,32 +3,39 @@ import { Link } from "react-router-native";
 
 import Text from "./Text";
 
+import theme from "../theme";
+
 const styles = StyleSheet.create({
     container: {
+        flexDirection: 'row',
         alignItems: 'center',
-        paddingTop: 50,
+        justifyContent: 'space-around',
+        paddingTop: 60,
+        paddingBottom: 30,
+        //backgroundColor: theme.colors.bloodishred
     },
     arrowIcon: {
-        width: 30,
-        height: 30,
-        marginTop: 10
+        width: 40,
+        height: 40,
     }
 });
 
-
-const NewPost = () => {
+const Header = ({ text }) => {
     return (
         <View style={styles.container}>
-            <Text fontSize='heading'>New Post</Text>
             <Link to='/'>
                 <Image 
                     style={styles.arrowIcon}
                     source={require('../../assets/icons8-back-96.png')}
                 />
             </Link>
-            <Text>Logoa painamalla pääset takaisin feediin</Text>
+            <Text fontSize='heading'>{text}</Text>
+            <Image 
+                style={styles.arrowIcon}
+                source={require('../../assets/icons8-back-96-darkgrey.png')}
+            />
         </View>
     );
 };
 
-export default NewPost;
+export default Header;

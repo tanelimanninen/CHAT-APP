@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 import Header from './Header';
 import SearchBar from './SearchBar';
 import ChatList from './Chatlist';
-import Text from '../Text';
 
 //CSS
 import theme from '../../theme';
