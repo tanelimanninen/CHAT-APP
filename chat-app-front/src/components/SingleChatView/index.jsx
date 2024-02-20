@@ -5,11 +5,13 @@ import Post from "./Post";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
+import theme from "../../theme";
 import data from "../../data";
 
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
+        backgroundColor: theme.colors.darkgrey
     },
     listContainer: {
         flex: 1,

@@ -3,12 +3,13 @@ import { StyleSheet, View, Image } from "react-native";
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 150,
-        paddingBottom: 140,
+        alignItems: 'center',
+        paddingTop: 100,
+        paddingBottom: 50,
     },
     logo: {
-        width: 259,
-        height: 83
+        width: 215,
+        height: 69
     }
 });
 

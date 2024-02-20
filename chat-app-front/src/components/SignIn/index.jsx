@@ -14,13 +14,19 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
     },
+    logoContainer: {
+        width: 259,
+        height: 83,
+        paddingTop: 150,
+        paddingBottom: 140
+    }
 });
 
 
 const SignIn = () => {
     return (
         <ImageBackground
-            source={require('../../../assets/BACKGROUND_VER3-01.jpg')} // replace with the path to your image
+            source={require('../../../assets/BACKGROUND_VER3-01.jpg')}
             style={styles.backgroundImage}
         >
             <View style={styles.container}>
