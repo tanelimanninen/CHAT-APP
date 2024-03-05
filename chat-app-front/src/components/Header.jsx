@@ -3,8 +3,6 @@ import { Link } from "react-router-native";
 
 import Text from "./Text";
 
-import theme from "../theme";
-
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',

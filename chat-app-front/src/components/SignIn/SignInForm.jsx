@@ -30,7 +30,7 @@ const SignInForm = () => {
         <View style={styles.container}>
             <View style={styles.inputsContainer}>
                 <FormTextInput placeholder='Username' />
-                <FormTextInput placeholder='Password' />
+                <FormTextInput placeholder='Password' secureTextEntry={true} />
             </View>
             <Button route='/' text='SIGN IN' color='blue' />
             <Text style={styles.textContainer} color='textBlue'>Don't have an account?</Text>

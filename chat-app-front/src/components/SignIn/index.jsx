@@ -3,8 +3,6 @@ import { StyleSheet, View, ImageBackground } from "react-native";
 import Logo from "./Logo";
 import SignInForm from "./SignInForm";
 
-
-
 const styles = StyleSheet.create({
     backgroundImage: {
         flex: 1,

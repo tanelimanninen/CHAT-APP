@@ -21,8 +21,8 @@ const SignUpForm = () => {
                 <FormTextInput placeholder='First name' />
                 <FormTextInput placeholder='Last name' />
                 <FormTextInput placeholder='Username' />
-                <FormTextInput placeholder='Password' />
-                <FormTextInput placeholder='Confirm password' />
+                <FormTextInput placeholder='Password' secureTextEntry={true} />
+                <FormTextInput placeholder='Confirm password' secureTextEntry={true} />
             </View>
             <Button route='/' text='CREATE' color='blue' />
         </View>

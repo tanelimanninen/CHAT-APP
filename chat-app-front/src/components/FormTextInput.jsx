@@ -15,11 +15,12 @@ const styles = StyleSheet.create({
     }
 });
 
-const FormTextInput = ({ placeholder }) => {
+const FormTextInput = ({ placeholder, secureTextEntry }) => {
     return (
         <NativeTextInput
             style={styles.inputContainer}
             placeholder={placeholder}
+            secureTextEntry={secureTextEntry}
         />
     );
 };
