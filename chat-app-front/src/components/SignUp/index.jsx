@@ -1,5 +1,4 @@
-import { StyleSheet, View } from "react-native";
-import { Link } from "react-router-native";
+import { StyleSheet, View, Pressable } from "react-native";
 
 import Logo from "./Logo";
 import Text from "../Text";
@@ -17,19 +16,23 @@ const styles = StyleSheet.create({
 });
 
 
-const SignUp = () => {
-    return (
+const SignUp = ({ setToken, setMode }) => {
+    const handleReturnNavigation = () => {
+        setMode('sign-in');
+    };
 
-            <View style={styles.container}>
-                <Logo />
-                <Text color='textBlack' fontWeight='bold'>Sign Up</Text>
-                <SignUpForm />
-                <View style={styles.returnLink}>
-                    <Link to='/sign-in'>
-                        <Text color='textBlack' fontSize='subheading'>Return</Text>
-                    </Link>
-                </View>
+
+    return (
+        <View style={styles.container}>
+            <Logo />
+            <Text color='textBlack' fontWeight='bold'>Sign Up</Text>
+            <SignUpForm />
+            <View style={styles.returnLink}>
+                <Pressable onPress={handleReturnNavigation}>
+                    <Text color='textBlack' fontSize='subheading'>Return</Text>
+                </Pressable>
             </View>
+        </View>
     );
 };
 

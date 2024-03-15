@@ -1,14 +1,9 @@
-import { StyleSheet, View, ImageBackground } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import Logo from "./Logo";
 import SignInForm from "./SignInForm";
 
 const styles = StyleSheet.create({
-    backgroundImage: {
-        flex: 1,
-        resizeMode: 'cover',
-        
-      },
     container: {
         alignItems: 'center',
     },
@@ -21,17 +16,12 @@ const styles = StyleSheet.create({
 });
 
 
-const SignIn = () => {
+const SignIn = ({ setToken, setMode }) => {
     return (
-        <ImageBackground
-            source={require('../../../assets/BACKGROUND_VER3-01.jpg')}
-            style={styles.backgroundImage}
-        >
-            <View style={styles.container}>
-                <Logo />
-                <SignInForm />
-            </View>
-        </ImageBackground>
+        <View style={styles.container}>
+            <Logo />
+            <SignInForm setToken={setToken} setMode={setMode} />
+        </View>
     );
 };
 

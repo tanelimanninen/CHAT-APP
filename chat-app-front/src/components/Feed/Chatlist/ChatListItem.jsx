@@ -4,6 +4,8 @@ import { Link } from "react-router-native";
 import Text from '../../Text';
 import theme from '../../../theme';
 
+import defaultImage from '../../../../assets/icons8-customer-96.png'
+
 
 const styles = StyleSheet.create({
     container: {
@@ -73,14 +75,19 @@ const styles = StyleSheet.create({
 });
 
 
-const CardTopRow = ({ text, image, username }) => {
+const CardTopRow = ({ text, image, user }) => {
+
     return (
         <View style={styles.topRowContainer}>
             <View style={styles.avatarContainer}>
-                <Image style={styles.avatar} source={{ uri: image }} />
+                <Image
+                    style={styles.avatar}
+                    source={{ uri: image }}
+                    defaultSource={defaultImage}
+                />
             </View>
            <View style={styles.textContainer}>
-                <Text color='textBlack' fontWeight='bold'>{username}</Text>
+                <Text color='textBlack' fontWeight='bold'>{user}</Text>
                 <Text color='textBlack'>{text}</Text>
            </View>
         </View>
@@ -107,17 +114,17 @@ const CardBottomRow = ({ likes, dislikes }) => {
     );
 };
 
-const ChatListItem = ({ chat }) => {
+const ChatListItem = ({ post }) => {
     return (
         <View style={styles.container}>
             <CardTopRow
-                image={chat.image}
-                text={chat.text}
-                username={chat.username}
+                image={post.user.image}
+                text={post.text}
+                user={post.user.username}
             />
             <CardBottomRow
-                likes={chat.likes}
-                dislikes={chat.dislikes}        
+                likes={post.likes}
+                dislikes={post.dislikes}        
             />
         </View>
     )

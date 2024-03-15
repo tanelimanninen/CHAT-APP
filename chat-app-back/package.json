@@ -1,0 +1,28 @@
+{
+  "name": "chat-app-back",
+  "version": "1.0.0",
+  "description": "This is a folder for the backend configuration of a mobile application, called Chat-App. This app is for a thesis work project, that focuses on the usability aspect of a React Native mobile application.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "author": "Taneli Manninen",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "apollo-server-express": "^3.13.0",
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.3",
+    "graphql": "^16.8.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.2.1",
+    "mongoose-unique-validator": "^5.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

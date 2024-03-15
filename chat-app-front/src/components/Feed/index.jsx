@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
     },
   });
 
-const Feed = () => {
+const Feed = ({ setToken }) => {
     return (
         <View style={styles.container}>
-            <NavBar />
+            <NavBar setToken={setToken} />
             <Header />
             <SearchBar />
             <ChatList />

@@ -1,11 +1,11 @@
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        paddingTop: 90,
-        paddingBottom: 50,
+        paddingTop: Platform.OS === 'ios' ? 80 : 60,
+        paddingBottom: Platform.OS === 'ios' ? 40 : 30,
     },
     logo: {
         width: 215,

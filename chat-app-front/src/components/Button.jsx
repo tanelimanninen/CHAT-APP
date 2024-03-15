@@ -1,5 +1,7 @@
+//THIS COMPONENT MIGHT BE UNECESSARY
+
 import { StyleSheet, Pressable } from "react-native";
-import { Link } from "react-router-native";
+import { useNavigate } from "react-router-native";
 
 import Text from "./Text";
 import theme from "../theme";
@@ -21,14 +23,21 @@ const styles = StyleSheet.create({
 });
 
 
-const Button = ({ route, text, color }) => {
+
+
+const Button = ({ text, color, onPress }) => {
     const dynamicStyles = color === "blue" ? styles.backgroundBlue : styles.backgroundPersimmon;
 
+    const handlePress = async () => {
+        console.log('Button pressed');
+        if (onPress) {
+          await onPress();
+        }
+    };
+
     return (
-        <Pressable style={[styles.buttonContainer, dynamicStyles]}>
-            <Link to={route}>
-                <Text fontSize='subheading'>{text}</Text>
-            </Link>
+        <Pressable onPress={handlePress} style={[styles.buttonContainer, dynamicStyles]}>
+            <Text fontSize='subheading'>{text}</Text>
         </Pressable>
     );
 };

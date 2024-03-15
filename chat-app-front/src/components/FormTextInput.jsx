@@ -1,4 +1,4 @@
-import { StyleSheet, TextInput as NativeTextInput } from "react-native";
+import { StyleSheet, TextInput as NativeTextInput, Platform } from "react-native";
 
 import theme from "../theme";
 
@@ -8,18 +8,20 @@ const styles = StyleSheet.create({
         width: 270,
         marginBottom: 25,
         paddingHorizontal: 20,
-        paddingTop: 15,
-        paddingBottom: 15,
+        paddingTop: Platform.OS === 'ios' ? 15 : 10,
+        paddingBottom: Platform.OS === 'ios' ? 15: 10,
         borderRadius: 10,
         backgroundColor: theme.colors.creamywhite
     }
 });
 
-const FormTextInput = ({ placeholder, secureTextEntry }) => {
+const FormTextInput = ({ placeholder, value, onChangeText, secureTextEntry }) => {
     return (
         <NativeTextInput
             style={styles.inputContainer}
             placeholder={placeholder}
+            value={value}
+            onChangeText={onChangeText}
             secureTextEntry={secureTextEntry}
         />
     );
