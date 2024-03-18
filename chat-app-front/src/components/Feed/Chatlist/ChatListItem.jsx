@@ -3,7 +3,7 @@ import { Link } from "react-router-native";
 
 import Text from '../../Text';
 import theme from '../../../theme';
-
+//USER IMAGE IF ACCOUNT HAS NO IMAGE URI
 import defaultImage from '../../../../assets/icons8-customer-96.png'
 
 

@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 const NewPost = () => {
     return (
         <View style={styles.container}>
-            <Header text='New Post'/>
+            <Header text='New Post' />
             <PostForm />
         </View>
     );

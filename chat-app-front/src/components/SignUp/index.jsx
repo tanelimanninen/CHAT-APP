@@ -21,12 +21,11 @@ const SignUp = ({ setToken, setMode }) => {
         setMode('sign-in');
     };
 
-
     return (
         <View style={styles.container}>
             <Logo />
             <Text color='textBlack' fontWeight='bold'>Sign Up</Text>
-            <SignUpForm />
+            <SignUpForm setToken={setToken} setMode={setMode} />
             <View style={styles.returnLink}>
                 <Pressable onPress={handleReturnNavigation}>
                     <Text color='textBlack' fontSize='subheading'>Return</Text>

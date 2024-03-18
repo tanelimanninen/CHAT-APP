@@ -1,9 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { StyleSheet, View, Alert, TextInput as NativeTextInput, Platform, Pressable } from "react-native";
-import { useMutation, useApolloClient } from "@apollo/client";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigate } from "react-router-native";
-import { LOGIN } from "../../graphql/mutations";
+import useLogin from '../../hooks/useLogin';
 
 //import Button from "../Button";
 import Text from "../Text";
@@ -50,30 +48,17 @@ const styles = StyleSheet.create({
 const SignInForm = ({ setToken, setMode }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    //const [showSignUp, setShowSignUp] = useState(false);
-    
-    const [ login, result ] = useMutation(LOGIN);
-    const apolloClient = useApolloClient();
+    const login = useLogin();
     const navigate = useNavigate();
-
-    useEffect(() => {
-        if ( result.data ) {
-          const token = result.data.login.value;
-          setToken(token);
-          AsyncStorage.setItem('chatapp-user-token', token);
-          //RESET APOLLO CLIENT STORE
-          apolloClient.resetStore();
-          console.log('Token set to Async Storage');
-        }
-      }, [result.data])
 
     const handleSignIn = async () => {
         try {
-          await login({ variables: { username, password } });
-
+          // LOG IN USER
+          const token = await login(username, password);
+          setToken(token);
+          // NAVIGATE TO FEED
           navigate('/');
         } catch (error) {
-          // Handle login error, e.g., display an error message
           Alert.alert('Login failed', 'Invalid username or password');
         }
     };

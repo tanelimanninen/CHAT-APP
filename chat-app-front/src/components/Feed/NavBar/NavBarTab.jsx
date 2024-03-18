@@ -5,7 +5,6 @@ import Text from '../../Text';
 
 const NavBarTab = ({ text, onPress }) => {
     const handlePress = async () => {
-        console.log('Button pressed');
         if (onPress) {
           await onPress();
         }

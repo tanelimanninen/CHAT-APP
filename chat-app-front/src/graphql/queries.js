@@ -15,7 +15,7 @@ export const ALL_POSTS = gql`
   }
 `
 
-export const GET_ME = gql`
+export const GET_USER = gql`
   query {
     me {
         username

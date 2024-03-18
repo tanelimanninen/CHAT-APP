@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-native";
 //import Text from "../../Text";
 import NavBarTab from "./NavBarTab";
 import ImageTab from "./ImageTab";
+import theme from "../../../theme";
 
 
 const styles = StyleSheet.create({
@@ -15,7 +16,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         alignItems: 'center',
         paddingTop: 60,
-        paddingBottom: 10,
+        paddingBottom: 5,
         //backgroundColor: theme.colors.ashblue
     },
   });
@@ -23,6 +24,10 @@ const styles = StyleSheet.create({
 const NavBar = ({ setToken }) => {
     const apolloClient = useApolloClient();
     const navigate = useNavigate();
+
+    const handleNavigationToNewPost = () => {
+      navigate('/new-post');
+    }
 
     const handleSignOut = async () => {
         try {
@@ -41,11 +46,10 @@ const NavBar = ({ setToken }) => {
         }
     };
 
-
     return (
         <View style={styles.container}>
             <ImageTab imageSource={require('../../../../assets/CHAT_ICON_TRANSPARENT.png')} route='/' />
-            <NavBarTab text='New Post' route='/new-post' />
+            <NavBarTab text='New Post' onPress={handleNavigationToNewPost} />
             <NavBarTab text='Sign Out' onPress={handleSignOut} />
         </View>
     );
