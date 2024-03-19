@@ -1,10 +1,10 @@
 import { StyleSheet, View, Image, Pressable } from 'react-native';
-import { Link } from "react-router-native";
+import { useNavigate } from "react-router-native";
 
 import Text from '../../Text';
 import theme from '../../../theme';
 //USER IMAGE IF ACCOUNT HAS NO IMAGE URI
-import defaultImage from '../../../../assets/icons8-customer-96.png'
+import defaultImage from '../../../../assets/icons8-user-90-darkgrey.png';
 
 
 const styles = StyleSheet.create({
@@ -76,15 +76,21 @@ const styles = StyleSheet.create({
 
 
 const CardTopRow = ({ text, image, user }) => {
-
     return (
         <View style={styles.topRowContainer}>
             <View style={styles.avatarContainer}>
+            {image ? (
                 <Image
                     style={styles.avatar}
                     source={{ uri: image }}
-                    defaultSource={defaultImage}
                 />
+            ) : (
+                <Image
+                    style={styles.avatar}
+                    source={defaultImage}
+                />
+            )}
+                
             </View>
            <View style={styles.textContainer}>
                 <Text color='textBlack' fontWeight='bold'>{user}</Text>
@@ -94,21 +100,39 @@ const CardTopRow = ({ text, image, user }) => {
     );
 };
 
-const CardBottomRow = ({ likes, dislikes }) => {
+const CardBottomRow = ({ post, likes, dislikes }) => {
+    const navigate = useNavigate();
+
+    const handleLikes = () => {
+        console.log('Like pushed');
+    };
+    
+    const handleDislikes = () => {
+        console.log('Dislike pushed');
+    };
+
+    if (!post) {
+        return <Text>Post not found</Text>;
+    }
+    
+    const handleCommentsNavigation = () => {
+        console.log('Comments pushed');
+    
+        navigate(`/post/${post.id}`);
+    };
+
     return (
         <View style={styles.bottomRowContainer}>
-            <Pressable style={styles.likeButton}>
+            <Pressable onPress={handleLikes} style={styles.likeButton}>
                 <Image style={styles.icon} source={require('../../../../assets/icons8-like-96.png')} />
                 <Text color='textBlack'>{likes}</Text>
             </Pressable>
-            <Pressable style={styles.dislikeButton}>
+            <Pressable onPress={handleDislikes} style={styles.dislikeButton}>
                 <Image style={styles.icon} source={require('../../../../assets/icons8-dislike-96.png')} />
                 <Text color='textBlack'>{dislikes}</Text>
             </Pressable>
-            <Pressable style={styles.commentButton}>
-                <Link to='/chat/:id'>
-                    <Image style={styles.icon} source={require('../../../../assets/icons8-message-96.png')} />
-                </Link>
+            <Pressable onPress={handleCommentsNavigation} style={styles.commentButton}>
+                <Image style={styles.icon} source={require('../../../../assets/icons8-message-96.png')} />
             </Pressable>
         </View>
     );
@@ -123,6 +147,7 @@ const ChatListItem = ({ post }) => {
                 user={post.user.username}
             />
             <CardBottomRow
+                post={post}
                 likes={post.likes}
                 dislikes={post.dislikes}        
             />

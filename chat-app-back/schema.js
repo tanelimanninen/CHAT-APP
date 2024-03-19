@@ -28,16 +28,13 @@ const typeDefs = `
   type Query {
     allPosts: [Post!]!
     allUsers: [User!]!
-    findPost(user: String!): Post
+    singlePost(id: ID!): Post
     me: User
   }
 
   type Mutation {
     createPost(
-        user: String!
-        text: String!
-        likes: Int
-        dislikes: Int
+      text: String!
     ): Post
     createUser(
       firstname: String!

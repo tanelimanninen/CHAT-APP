@@ -35,6 +35,14 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: theme.colors.blue
     },
+    pressedButtonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 182,
+        height: 52,
+        borderRadius: 30,
+        backgroundColor: `${theme.colors.blue}70`, // Opacity of 70%
+    },
 });
 
 
@@ -45,6 +53,7 @@ const SignUpForm = ({ setToken, setMode }) => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [image, setImage] = useState('');
+    const [isPressed, setIsPressed] = useState(false);
     const [createUser] = useMutation(CREATE_USER);
     const login = useLogin();
     const navigate = useNavigate();
@@ -77,7 +86,7 @@ const SignUpForm = ({ setToken, setMode }) => {
             // NAVIGATE TO FEED
             navigate('/');
         } catch (error) {
-            console.error('Error signing up:', error.message);
+            Alert.alert('Sign up failed', 'Invalid username or password');
         }
         
     };
@@ -124,10 +133,14 @@ const SignUpForm = ({ setToken, setMode }) => {
                     onChangeText={setImage}
                 />
             </View>
-            <Pressable onPress={handleSignUp} style={styles.buttonContainer}>
+            <Pressable
+                onPress={handleSignUp}
+                onPressIn={() => setIsPressed(true)}
+                onPressOut={() => setIsPressed(false)}
+                style={isPressed ? styles.pressedButtonContainer : styles.buttonContainer}
+            >
                 <Text fontSize='subheading'>CREATE</Text>
             </Pressable>
-            
         </View>
     );
 };

@@ -48,7 +48,7 @@ let posts = [
 
 const resolvers = {
     Query: {
-      // QUERY 1 (EI TÄLLÄ HETKELLÄ TOIMI KOSKA POSTS EI OLE VIELÄ TIETOKANNASSA)
+      // QUERY 1
       allPosts: async () => {
         return Post.find({})
       },
@@ -61,19 +61,37 @@ const resolvers = {
         return context.currentUser
       },
       // QUERY 4
-      findPost: (root, args) =>
-        posts.find(p => p.username === args.username)
+      singlePost: async (root, args) => {
+        try {
+          const post = await Post.findById(args.id);
+
+          if (!post) {
+            throw new Error("Post not found");
+          }
+
+          return post;
+        } catch (error) {
+          throw new Error(`Failed to fetch the post: ${error.message}`);
+        };
+      }
     },
     Mutation: {
         // MUTATION 1
       createPost: async (root, args, context) => {
-        let user = await User.findOne({ username: args.user });
+        const currentUser = context.currentUser;
 
-        //TÄHÄN TULEE VIELÄ KIRJAUTUNEEN KÄYTTÄJÄN TSEKKAUS
-        //const currentUser = context.currentUser
+        //IF NO USER LOGGED IN
+        if (!currentUser) {
+          throw new GraphQLError('not authenticated', {
+            extensions: {
+              code: 'UNAUTHORIZED',
+            }
+          })
+        };
+
 
         const post = new Post({
-          user: user._id,
+          user: currentUser._id,
           text: args.text,
           likes: 0,
           dislikes: 0

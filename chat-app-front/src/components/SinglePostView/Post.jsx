@@ -1,8 +1,9 @@
 import { StyleSheet, View, Image } from "react-native";
 
 import Text from "../Text";
-
 import theme from "../../theme";
+//USER IMAGE IF ACCOUNT HAS NO IMAGE URI
+import defaultImage from '../../../assets/icons8-user-90-darkgrey.png';
 
 const styles = StyleSheet.create({
     container: {
@@ -36,7 +37,11 @@ const styles = StyleSheet.create({
 const CardTopRow = ({ image, likes, dislikes }) => {
     return (
         <View style={styles.topRowContainer}>
-            <Image style={styles.avatar} source={{ uri: image }} />
+            {image ? (
+                <Image style={styles.avatar} source={{ uri: image }} />
+            ) : (
+                <Image style={styles.avatar} source={defaultImage} />
+            )}
             <View style={styles.dataContainer}>
                 <Text color='textBlack' fontWeight='bold'>{likes}</Text>
                 <Text color='textBlack' fontWeight='bold'>Likes</Text>
@@ -58,11 +63,11 @@ const CardBottomRow = ({ username, text }) => {
     );
 };
 
-const Post = ({ chat }) => {
+const Post = ({ post }) => {
     return (
         <View style={styles.container}>
-            <CardTopRow image={chat.image} likes={chat.likes} dislikes={chat.dislikes} />
-            <CardBottomRow username={chat.username} text={chat.text} />
+            <CardTopRow image={post.user.image} likes={post.likes} dislikes={post.dislikes} />
+            <CardBottomRow username={post.user.username} text={post.text} />
         </View>
     );
 };

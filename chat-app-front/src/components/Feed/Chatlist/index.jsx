@@ -29,7 +29,6 @@ const ChatList = () => {
     const { loading, error, data } = useQuery(ALL_POSTS, {
         fetchPolicy: 'cache-and-network',
     });
-    //console.log(data.allPosts);
 
     if (loading) return <View style={styles.text}><Text>Loading...</Text></View>;
     if (error) return <View style={styles.text}><Text>Error: {error.message}</Text></View>;

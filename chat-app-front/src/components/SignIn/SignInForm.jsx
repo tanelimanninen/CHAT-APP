@@ -42,12 +42,22 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: theme.colors.blue
     },
+    pressedButtonContainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: 182,
+        height: 52,
+        borderRadius: 30,
+        backgroundColor: `${theme.colors.blue}70`, // Opacity of 70%
+    },
 });
 
 
 const SignInForm = ({ setToken, setMode }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [signInIsPressed, setsignInIsPressed] = useState(false);
+    const [signUpIsPressed, setsignUpIsPressed] = useState(false);
     const login = useLogin();
     const navigate = useNavigate();
 
@@ -87,11 +97,21 @@ const SignInForm = ({ setToken, setMode }) => {
                     secureTextEntry={true}
                 />
             </View>
-            <Pressable onPress={handleSignIn} style={styles.buttonContainer}>
+            <Pressable
+                onPress={handleSignIn}
+                onPressIn={() => setsignInIsPressed(true)}
+                onPressOut={() => setsignInIsPressed(false)}
+                style={signInIsPressed ? styles.pressedButtonContainer : styles.buttonContainer}
+            >
                 <Text fontSize='subheading'>SIGN IN</Text>
             </Pressable>
             <Text style={styles.textContainer} color='textBlue'>Don't have an account?</Text>
-            <Pressable onPress={handleNavigationToSignUp} style={styles.buttonContainer}>
+            <Pressable
+                onPress={handleNavigationToSignUp}
+                onPressIn={() => setsignUpIsPressed(true)}
+                onPressOut={() => setsignUpIsPressed(false)}
+                style={signUpIsPressed ? styles.pressedButtonContainer : styles.buttonContainer}
+            >
                 <Text fontSize='subheading'>SIGN UP</Text>
             </Pressable>
         </View>

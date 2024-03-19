@@ -6,7 +6,7 @@ import { Route, Routes } from 'react-router-native';
 //COMPONENTS
 import Feed from './Feed';
 import NewPost from './NewPost';
-import SingleChatView from './SingleChatView';
+import SinglePostView from './SinglePostView';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
 
@@ -53,7 +53,7 @@ const Main = () => {
       <Routes>
         <Route path='/' element={<Feed setToken={setToken} />} />
         <Route path='/new-post' element={<NewPost />} />
-        <Route path='/chat/:id' element={<SingleChatView />} />
+        <Route path='/post/:id' element={<SinglePostView />} />
       </Routes>
     </View>
   );

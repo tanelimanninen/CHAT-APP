@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image } from "react-native";
+import { StyleSheet, View, Image, Platform } from "react-native";
 import { Link } from "react-router-native";
 import { useQuery } from '@apollo/client';
 import { GET_USER } from "../graphql/queries";
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-around',
-        paddingTop: 60,
+        paddingTop: Platform.OS === 'ios' ? 80 : 60,
         paddingBottom: 30,
         //backgroundColor: theme.colors.bloodishred
     },

@@ -18,3 +18,11 @@ export const CREATE_USER = gql`
     }
   }
 `
+
+export const CREATE_POST = gql`
+  mutation createPost($text: String!) {
+    createPost(text: $text) {
+      text
+    }
+  }
+`

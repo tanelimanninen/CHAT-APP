@@ -24,3 +24,18 @@ export const GET_USER = gql`
     }
   }
 `
+
+export const GET_SINGLE_POST = gql`
+  query singlePost($id: ID!) {
+    singlePost(id: $id) {
+      user {
+        username
+        image
+      }
+      text
+      likes
+      dislikes
+      id
+    }
+  }
+`
