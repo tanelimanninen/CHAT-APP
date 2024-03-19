@@ -6,45 +6,6 @@ const jwt = require('jsonwebtoken');
 const Post = require('./models/post');
 const User = require('./models/user');
 
-//MOCK DATAA
-let posts = [
-    {
-      id: 'chat1',
-      user: 'peksi',
-      text: 'Hei kaikille tasapuolisesti.',
-      likes: 223,
-      dislikes: 13,
-    },
-    {
-        id: 'chat2',
-        user: 'kusipaikka',
-        text: 'Kävin kaupassa. Ostin kaljaa ja makkaraa. En ostanut salaattia.',
-        likes: 7,
-        dislikes: 1,
-    },
-    {
-        id: 'chat3',
-        user: 'Matrz',
-        text: 'Ei mitään tärkeää...',
-        likes: 40,
-        dislikes: 57,
-    },
-    {
-        id: 'chat4',
-        user: 'ZesuZ',
-        text: 'Palasin nyt taas, jos ketään ees kiinnostaa. Siitä puheen ollen, ollaan hiljaa',
-        likes: 9,
-        dislikes: 5,
-    },
-    {
-        id: 'chat5',
-        user: 'batman',
-        text: 'I am batman',
-        likes: 92,
-        dislikes: 33,
-    },
-];
-
 
 const resolvers = {
     Query: {
