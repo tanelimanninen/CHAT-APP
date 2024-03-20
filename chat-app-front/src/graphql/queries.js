@@ -36,6 +36,14 @@ export const GET_SINGLE_POST = gql`
       likes
       dislikes
       id
+      comments {
+        user {
+          username
+          image
+        }
+        text
+        id
+      }
     }
   }
 `

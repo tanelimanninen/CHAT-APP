@@ -15,7 +15,11 @@ const schema = new mongoose.Schema({
     },
     dislikes: {
         type: Number
-    }
+    },
+    comments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
+    }]
 });
   
   

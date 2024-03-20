@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, Pressable } from 'react-native';
+import { StyleSheet, View, Image, Pressable, Platform } from 'react-native';
 import { useNavigate } from "react-router-native";
 
 import Text from '../../Text';
@@ -10,6 +10,7 @@ import defaultImage from '../../../../assets/icons8-user-90-darkgrey.png';
 const styles = StyleSheet.create({
     container: {
         flexDirection: "column",
+        width: Platform.OS === 'ios' ? 340 : 320,
         padding: 20,
         borderRadius: 10,
         backgroundColor: theme.colors.creamywhite

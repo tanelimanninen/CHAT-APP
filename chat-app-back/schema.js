@@ -16,11 +16,13 @@ const typeDefs = `
     text: String!
     likes: Int
     dislikes: Int
+    comments: [Comment!]!
     id: ID!
   }
   
   type Comment {
     user: User!
+    post: Post!
     text: String!
     id: ID!
   }
@@ -48,6 +50,7 @@ const typeDefs = `
       password: String!
     ): Token
     createComment(
+      postId: ID!
       text: String!
     ): Comment
   }
