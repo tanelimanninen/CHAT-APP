@@ -54,8 +54,8 @@ const resolvers = {
         const post = new Post({
           user: currentUser._id,
           text: args.text,
-          likes: 0,
-          dislikes: 0,
+          likes: [],
+          dislikes: [],
           comments: []
         });
 
@@ -176,16 +176,96 @@ const resolvers = {
                 }
             });
         }
-      }
+      },
+      // MUTATION 5
+      createLike: async (root, { postId }, { currentUser }) => {
+        // IF NO USER LOGGED IN
+        if (!currentUser) {
+          throw new GraphQLError('Not authenticated', {
+            extensions: {
+              code: 'UNAUTHORIZED',
+            }
+          });
+        };
+
+        try {
+          // GET THE POST BY ID
+          const post = await Post.findById(postId);
+  
+          // IF USER HAS ALREADY LIKED THE POST
+          if (post.likes.includes(currentUser._id)) {
+            throw new GraphQLError('Current user has already liked this post', {
+              extensions: {
+                code: 'DUPLICATE_LIKE'
+              }
+            });
+          };
+  
+          // ADD CURRENT USERS ID TO LIKES ARRAY IN POST
+          post.likes.push(currentUser._id);
+          
+          // SAVE POST WITH NEW DATA
+          await post.save();
+  
+          return postId;
+        } catch (error) {
+          throw new GraphQLError('Failed to create like', {
+            extensions: {
+              code: 'INTERNAL_SERVER_ERROR',
+              error: error.message
+            }
+          });
+        }
+      },
+      // MUTATION 6
+      createDislike: async (root, { postId }, { currentUser }) => {
+        // IF NO USER LOGGED IN
+        if (!currentUser) {
+          throw new GraphQLError('Not authenticated', {
+            extensions: {
+              code: 'UNAUTHORIZED',
+            }
+          });
+        };
+
+        try {
+          // GET THE POST BY ID
+          const post = await Post.findById(postId);
+  
+          // IF USER HAS ALREADY LIKED THE POST
+          if (post.dislikes.includes(currentUser._id)) {
+            throw new GraphQLError('Current user has already disliked this post', {
+              extensions: {
+                code: 'DUPLICATE_DISLIKE'
+              }
+            });
+          };
+  
+          // ADD CURRENT USERS ID TO DISLIKES ARRAY IN POST
+          post.dislikes.push(currentUser._id);
+          
+          // SAVE POST WITH NEW DATA
+          await post.save();
+  
+          return postId;
+        } catch (error) {
+          throw new GraphQLError('Failed to create dislike', {
+            extensions: {
+              code: 'INTERNAL_SERVER_ERROR',
+              error: error.message
+            }
+          });
+        }
+      },
     },
+    // TYPE QUERYS
     Post: {
       user: async (parent, args, context, info) => {
         try {
-            // Fetch the user data referenced by the user field of the post
+            // FETCH THE USER DATA
             const user = await User.findById(parent.user);
             return user;
         } catch (error) {
-            // Handle any errors
             throw new GraphQLError('Failed to fetch user data for post', {
                 extensions: {
                     code: 'INTERNAL_SERVER_ERROR',
@@ -196,11 +276,10 @@ const resolvers = {
       },
       comments: async (parent, args, context, info) => {
         try {
-            // Fetch all comments associated with the post
+            // FETCH ALL COMMENTS
             const comments = await Comment.find({ post: parent._id });
             return comments;
         } catch (error) {
-            // Handle any errors
             throw new GraphQLError('Failed to fetch comments data for post', {
                 extensions: {
                     code: 'INTERNAL_SERVER_ERROR',
@@ -209,15 +288,42 @@ const resolvers = {
             });
         }
       },
+      likes: async (parent, args, context, info) => {
+        try {
+          // FETCH THE USER DATA
+          const users = await User.find({ _id: { $in: parent.likes } });
+          return users;
+        } catch (error) {
+          throw new GraphQLError('Failed to fetch user data for post likes', {
+            extensions: {
+              code: 'INTERNAL_SERVER_ERROR',
+              error: error.message
+            }
+          });
+        }
+      },
+      dislikes: async (parent, args, context, info) => {
+        try {
+          // FETCH THE USER DATA
+          const users = await User.find({ _id: { $in: parent.dislikes } });
+          return users;
+        } catch (error) {
+          throw new GraphQLError('Failed to fetch user data for post dislikes', {
+            extensions: {
+              code: 'INTERNAL_SERVER_ERROR',
+              error: error.message
+            }
+          });
+        }
+      },
     },
     Comment: {
       user: async (parent, args, context, info) => {
         try {
-          // Fetch the user data referenced by the user field of the comment
+          // FETCH THE USER DATA
           const user = await User.findById(parent.user);
           return user;
       } catch (error) {
-          // Handle any errors
           throw new GraphQLError('Failed to fetch user data for comment', {
               extensions: {
                   code: 'INTERNAL_SERVER_ERROR',

@@ -13,7 +13,7 @@ export const ALL_POSTS = gql`
       id
     }
   }
-`
+`;
 
 export const GET_USER = gql`
   query {
@@ -23,7 +23,7 @@ export const GET_USER = gql`
         id
     }
   }
-`
+`;
 
 export const GET_SINGLE_POST = gql`
   query singlePost($id: ID!) {
@@ -46,4 +46,4 @@ export const GET_SINGLE_POST = gql`
       }
     }
   }
-`
+`;

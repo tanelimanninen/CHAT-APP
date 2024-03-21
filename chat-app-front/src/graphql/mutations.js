@@ -6,7 +6,7 @@ export const LOGIN = gql`
       value
     }
   }
-`
+`;
 
 export const CREATE_USER = gql`
   mutation createUser($firstname: String!, $lastname: String!, $username: String!, $password: String!, $image: String) {
@@ -17,7 +17,7 @@ export const CREATE_USER = gql`
       image
     }
   }
-`
+`;
 
 export const CREATE_POST = gql`
   mutation createPost($text: String!) {
@@ -25,7 +25,7 @@ export const CREATE_POST = gql`
       text
     }
   }
-`
+`;
 
 export const CREATE_COMMENT = gql`
   mutation createComment($postId: ID!, $text: String!) {
@@ -38,4 +38,20 @@ export const CREATE_COMMENT = gql`
       id
     }
   }
-`
+`;
+
+export const CREATE_LIKE = gql`
+  mutation createLike($postId: ID!) {
+    createLike(postId: $postId) {
+      id
+    }
+  }
+`;
+
+export const CREATE_DISLIKE = gql`
+  mutation createDislike($postId: ID!) {
+    createDislike(postId: $postId) {
+      id
+    }
+  }
+`;
