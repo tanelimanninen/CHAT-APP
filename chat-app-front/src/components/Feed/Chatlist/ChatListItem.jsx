@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         flexDirection: 'column',
         justifyContent: 'space-around',
-        maxWidth: 260
+        maxWidth: Platform.OS === 'ios' ? 260 : 240
     },
     bottomRowContainer: {
         flexDirection: 'row',
@@ -117,7 +117,7 @@ const CardBottomRow = ({ post, likes, dislikes }) => {
     }
     
     const handleCommentsNavigation = () => {
-        console.log('Comments pushed');
+        //console.log('Comments pushed');
     
         navigate(`/post/${post.id}`);
     };

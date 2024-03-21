@@ -48,7 +48,7 @@ const SinglePostView = () => {
         <View style={styles.container}>
             <Header text='Comments' />
             <Post post={post} />
-            <CommentForm />
+            <CommentForm postId={id} />
             <FlatList
                 style={styles.listContainer} 
                 data={comments}

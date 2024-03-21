@@ -26,3 +26,16 @@ export const CREATE_POST = gql`
     }
   }
 `
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($postId: ID!, $text: String!) {
+    createComment(postId: $postId, text: $text) {
+      text
+      user {
+        username
+        image
+      }
+      id
+    }
+  }
+`

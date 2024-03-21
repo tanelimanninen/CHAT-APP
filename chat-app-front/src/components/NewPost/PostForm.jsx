@@ -53,6 +53,7 @@ const PostForm = () => {
     const handleSubmit = async () => {
         try {
             //console.log('Post pushed');
+            // CREATE NEW POST
             await createPost({ variables: { text } });
             //NAVIGATE TO FEED
             navigate('/');
