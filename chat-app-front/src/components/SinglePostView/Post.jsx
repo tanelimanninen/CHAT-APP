@@ -43,12 +43,12 @@ const CardTopRow = ({ image, likes, dislikes }) => {
                 <Image style={styles.avatar} source={defaultImage} />
             )}
             <View style={styles.dataContainer}>
-                <Text color='textBlack' fontWeight='bold'>{likes}</Text>
-                <Text color='textBlack' fontWeight='bold'>Likes</Text>
+                <Text color='textBlack' fontWeight='bold'>{likes.length}</Text>
+                <Text color='textBlack'>Likes</Text>
             </View>
             <View style={styles.dataContainer}>
-                <Text color='textBlack' fontWeight='bold'>{dislikes}</Text>
-                <Text color='textBlack' fontWeight='bold'>Dislikes</Text>
+                <Text color='textBlack' fontWeight='bold'>{dislikes.length}</Text>
+                <Text color='textBlack'>Dislikes</Text>
             </View>
         </View>
     );

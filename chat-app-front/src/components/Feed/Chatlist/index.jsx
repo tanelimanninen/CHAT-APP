@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     text: {
+        marginTop: 10,
         alignItems: 'center',
     }
 });    
@@ -41,6 +42,7 @@ const ChatList = () => {
                 ItemSeparatorComponent={ItemSeparator}
                 renderItem={({item}) => <ChatListItem post={item} />}
                 keyExtractor={(item) => item.id.toString()}
+                ListEmptyComponent={<Text fontSize='heading' style={styles.text}>No posts yet</Text>}
             />
         </View>
     );

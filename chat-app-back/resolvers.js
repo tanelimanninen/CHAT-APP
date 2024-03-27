@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 const Post = require('./models/post');
 const User = require('./models/user');
 const Comment = require('./models/comment');
+const Like = require('./models/like');
+const Dislike = require('./models/dislike');
+const post = require('./models/post');
 
 
 const resolvers = {
@@ -146,7 +149,7 @@ const resolvers = {
           // GET POST BY ID
           const post = await Post.findById(args.postId);
 
-          // Check if the post exists
+          // IF POST DOESN'T EXIST
           if (!post) {
             throw new GraphQLError('Post not found', {
               extensions: {
@@ -155,15 +158,16 @@ const resolvers = {
             });
           };
           
-            // CREATE COMMENT
-            const comment = new Comment({
-              user: currentUser._id,
-              post: args.postId,
-              text: args.text
+          // CREATE COMMENT
+          const comment = new Comment({
+            user: currentUser._id,
+            post: args.postId,
+            text: args.text
           });
+
           // SAVE TO DATABASE
           const savedComment = await comment.save();
-          // Add the comment ID to the post's comments array
+          // ADD COMMENT ID TO POSTS COMMENTS ARRAY
           post.comments.push(savedComment._id);
           await post.save();
 
@@ -189,25 +193,37 @@ const resolvers = {
         };
 
         try {
-          // GET THE POST BY ID
+          // GET POST BY ID
           const post = await Post.findById(postId);
-  
-          // IF USER HAS ALREADY LIKED THE POST
-          if (post.likes.includes(currentUser._id)) {
+          // IF POST DOESN'T EXIST
+          if (!post) {
+            throw new GraphQLError('Post not found', {
+              extensions: {
+                code: 'NOT_FOUND',
+              }
+            });
+          }
+
+          // CHECK IF CURRENT USER HAS ALREADY LIKED THE POST
+          const existingLike = await Like.findOne({ post: postId, user: currentUser._id });
+
+          if (existingLike) {
             throw new GraphQLError('Current user has already liked this post', {
               extensions: {
                 code: 'DUPLICATE_LIKE'
               }
             });
-          };
+          }
   
-          // ADD CURRENT USERS ID TO LIKES ARRAY IN POST
-          post.likes.push(currentUser._id);
-          
-          // SAVE POST WITH NEW DATA
+          // CREATE NEW LIKE
+          const like = new Like({ post: postId, user: currentUser._id });
+          await like.save();
+          // ADD LIKE TO POSTS LIKES ARRAY
+          post.likes.push(like._id);
+          // SAVE POST WITH UPDATED LIKES ARRAY
           await post.save();
-  
-          return postId;
+
+          return like;
         } catch (error) {
           throw new GraphQLError('Failed to create like', {
             extensions: {
@@ -229,25 +245,38 @@ const resolvers = {
         };
 
         try {
-          // GET THE POST BY ID
+          // GET POST BY ID
           const post = await Post.findById(postId);
-  
-          // IF USER HAS ALREADY LIKED THE POST
-          if (post.dislikes.includes(currentUser._id)) {
+
+          // IF POST DOESN'T EXIST
+          if (!post) {
+            throw new GraphQLError('Post not found', {
+              extensions: {
+                code: 'NOT_FOUND',
+              }
+            });
+          }
+
+          // CHECK IF CURRENT USER HAS ALREADY DISLIKED THE POST
+          const existingDislike = await Dislike.findOne({ post: postId, user: currentUser._id });
+
+          if (existingDislike) {
             throw new GraphQLError('Current user has already disliked this post', {
               extensions: {
                 code: 'DUPLICATE_DISLIKE'
               }
             });
-          };
+          }
   
-          // ADD CURRENT USERS ID TO DISLIKES ARRAY IN POST
-          post.dislikes.push(currentUser._id);
-          
-          // SAVE POST WITH NEW DATA
+          // CREATE NEW DISLIKE
+          const dislike = new Dislike({ post: postId, user: currentUser._id });
+          await dislike.save();
+          // ADD LIKE TO POSTS LIKES ARRAY
+          post.dislikes.push(dislike._id);
+          // SAVE POST WITH UPDATED DISLIKES ARRAY
           await post.save();
-  
-          return postId;
+
+          return dislike;
         } catch (error) {
           throw new GraphQLError('Failed to create dislike', {
             extensions: {
@@ -290,11 +319,11 @@ const resolvers = {
       },
       likes: async (parent, args, context, info) => {
         try {
-          // FETCH THE USER DATA
-          const users = await User.find({ _id: { $in: parent.likes } });
-          return users;
+          // FETCH THE LIKE DATA
+          const likes = await Like.find({ post: parent._id });
+          return likes;
         } catch (error) {
-          throw new GraphQLError('Failed to fetch user data for post likes', {
+          throw new GraphQLError('Failed to fetch like data for post', {
             extensions: {
               code: 'INTERNAL_SERVER_ERROR',
               error: error.message
@@ -304,11 +333,11 @@ const resolvers = {
       },
       dislikes: async (parent, args, context, info) => {
         try {
-          // FETCH THE USER DATA
-          const users = await User.find({ _id: { $in: parent.dislikes } });
-          return users;
+          // FETCH THE DISLIKE DATA
+          const dislikes = await Dislike.find({ post: parent._id });
+          return dislikes;
         } catch (error) {
-          throw new GraphQLError('Failed to fetch user data for post dislikes', {
+          throw new GraphQLError('Failed to fetch dislike data for post', {
             extensions: {
               code: 'INTERNAL_SERVER_ERROR',
               error: error.message

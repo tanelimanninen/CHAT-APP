@@ -14,8 +14,8 @@ const typeDefs = `
   type Post {
     user: User!
     text: String!
-    likes: [User]!
-    dislikes: [User]!
+    likes: [Like]!
+    dislikes: [Dislike]!
     comments: [Comment!]!
     id: ID!
   }
@@ -26,6 +26,19 @@ const typeDefs = `
     text: String!
     id: ID!
   }
+
+  type Like {
+    id: ID!
+    user: User!
+    post: Post!
+  }
+  
+  type Dislike {
+    id: ID!
+    user: User!
+    post: Post!
+  }
+  
 
   type Query {
     allPosts: [Post!]!
@@ -55,10 +68,10 @@ const typeDefs = `
     ): Comment
     createLike(
       postId: ID!
-    ): ID
+    ): Like
     createDislike(
       postId: ID!
-    ): ID
+    ): Dislike
   }
 `
 

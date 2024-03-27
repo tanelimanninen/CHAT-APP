@@ -12,11 +12,11 @@ const schema = new mongoose.Schema({
     },
     likes: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Like'
     }],
     dislikes: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        ref: 'Dislike'
     }],
     comments: [{
         type: mongoose.Schema.Types.ObjectId,
