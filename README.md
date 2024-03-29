@@ -4,6 +4,6 @@ This directory is for a React Native mobile app project called "Chat App". The p
 I produce and study the application form a usability perspective. The app is based on a few main user paths and the production focuses on the quality of the UI/UX.
 
 ## SIGN IN VIEW
-![SIGN IN VIEW (IOS)](./screenshots/IOS_SIGN_IN.jpg)
+![SIGN IN VIEW (IOS)](./screenshots/IOS/IOS_SIGN_IN.jpg)
 
 ### Owner: Taneli Manninen
