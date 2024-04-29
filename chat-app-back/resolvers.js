@@ -7,7 +7,6 @@ const User = require('./models/user');
 const Comment = require('./models/comment');
 const Like = require('./models/like');
 const Dislike = require('./models/dislike');
-const post = require('./models/post');
 
 
 const resolvers = {

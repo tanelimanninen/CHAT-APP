@@ -3,10 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useApolloClient } from '@apollo/client';
 import { useNavigate } from "react-router-native";
 
-//import Text from "../../Text";
 import NavBarTab from "./NavBarTab";
 import ImageTab from "./ImageTab";
-import theme from "../../../theme";
 
 
 const styles = StyleSheet.create({
@@ -17,7 +15,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingTop: 60,
         paddingBottom: 5,
-        //backgroundColor: theme.colors.ashblue
     },
   });
 
@@ -27,16 +24,16 @@ const NavBar = ({ setToken }) => {
 
     const handleNavigationToNewPost = () => {
       navigate('/new-post');
-    }
+    };
 
     const handleSignOut = async () => {
         try {
-          //CHANGE TOKEN STATE TO NULL
+          // CHANGE TOKEN STATE TO NULL
           setToken(null);
-          //REMOVE CURRENT TOKEN
+          // REMOVE CURRENT TOKEN
           await AsyncStorage.removeItem('chatapp-user-token');
           console.log('Token removed');
-          //RESET APOLLO CLIENT STORE
+          // RESET APOLLO CLIENT STORE
           await apolloClient.resetStore();
           console.log('Store reset');
 

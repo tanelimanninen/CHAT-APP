@@ -4,8 +4,6 @@ import { useMutation } from '@apollo/client';
 import { CREATE_COMMENT } from "../../graphql/mutations";
 import { GET_SINGLE_POST } from "../../graphql/queries";
 
-import Text from "../Text";
-
 import theme from "../../theme";
 
 const styles = StyleSheet.create({
@@ -13,9 +11,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         marginTop: 20,
-        //marginStart: 20,
         paddingHorizontal: 20,
-        //backgroundColor: theme.colors.green
     },
     inputContainer: {
         textAlignVertical: 'top',
@@ -56,9 +52,11 @@ const styles = StyleSheet.create({
     }
 });
 
+
 const CommentForm = ({ postId }) => {
     const [text, setText] = useState('');
     const [isPressed, setIsPressed] = useState(false);
+    
     const [createComment] = useMutation(CREATE_COMMENT, {
         // UPDATE FUNCTION FOR THE CACHE AFTER NEW COMMENT ADDED
         update: (cache, { data: { createComment } }) => {
@@ -67,7 +65,6 @@ const CommentForm = ({ postId }) => {
                 query: GET_SINGLE_POST,
                 variables: { id: postId }
             });
-            //console.log(cachedData);
             // UPDATE THE POST CACHE WITH NEW COMMENT
             cache.writeQuery({
                 query: GET_SINGLE_POST,
@@ -84,7 +81,6 @@ const CommentForm = ({ postId }) => {
             });
         }
     });
-    //console.log(postId);
 
     const handleComment = async () => {
         if (text === '') {
@@ -93,13 +89,11 @@ const CommentForm = ({ postId }) => {
         };
 
         try {
-            //console.log('Comment submit pushed');
             // CREATE NEW COMMENT
             await createComment({ variables: { postId, text } });
             // CLEAR INPUT FIELD
             setText('');
         } catch (error) {
-            //console.error('Error creating post:', error.message);
             Alert.alert('Failed to add comment', 'Something went wrong');
         }
     }

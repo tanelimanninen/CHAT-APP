@@ -1,10 +1,8 @@
 import { StyleSheet, View, FlatList } from "react-native";
 import { useQuery } from "@apollo/client";
+
 import Text from "../../Text";
 import ChatListItem from "./ChatListItem";
-
-//MOCK DATA, TÄSSÄ VAIHEESSA KOVAKOODATTU DATA HAETAAN TIEDOSTOSTA
-//import data from "../../../data";
 import { ALL_POSTS } from "../../../graphql/queries";
 
 

@@ -9,7 +9,6 @@ import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 
 import theme from "../../theme";
-//import data from "../../data";
 import Text from "../Text";
 
 const styles = StyleSheet.create({
@@ -26,8 +25,6 @@ const styles = StyleSheet.create({
     }
 });
 
-//THESE ARE FOR THE MOCK DATA USED BEFORE
-//const comments = data.comments
 
 const SinglePostView = () => {
     const { id } = useParams();
@@ -41,8 +38,6 @@ const SinglePostView = () => {
 
     const post = data.singlePost;
     const comments = data.singlePost.comments
-    //console.log(post)
-    //console.log(comments);
 
     return (
         <View style={styles.container}>

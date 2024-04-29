@@ -5,7 +5,7 @@ import Header from './Header';
 import SearchBar from './SearchBar';
 import ChatList from './Chatlist';
 
-//CSS
+// CSS
 import theme from '../../theme';
 
 const styles = StyleSheet.create({

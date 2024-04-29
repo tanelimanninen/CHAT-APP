@@ -8,7 +8,7 @@ import { ALL_POSTS } from '../../../graphql/queries';
 
 import Text from '../../Text';
 import theme from '../../../theme';
-//USER IMAGE IF ACCOUNT HAS NO IMAGE URI
+// USER IMAGE IF ACCOUNT HAS NO IMAGE URI
 import defaultImage from '../../../../assets/icons8-user-90-darkgrey.png';
 
 
@@ -190,7 +190,6 @@ const CardBottomRow = ({ post }) => {
             await createLike({ variables: { postId: post.id } });
             console.log('Like created successfully');
         } catch (error) {
-            //console.error('Failed to create like:', error);
             Alert.alert('Failed to add like', 'Post can be liked only once');
         }
     };
@@ -200,7 +199,6 @@ const CardBottomRow = ({ post }) => {
             await createDislike({ variables: { postId: post.id } });
             console.log('Dislike created successfully');
           } catch (error) {
-            //console.error('Failed to create dislike:', error);
             Alert.alert('Failed to add dislike', 'Post can be disliked only once');
           }
     };
@@ -210,8 +208,7 @@ const CardBottomRow = ({ post }) => {
     }
     
     const handleCommentsNavigation = () => {
-        //console.log('Comments pushed');
-    
+        // NAVIGATE TO SINGLE POST VIEW BASED ON ID
         navigate(`/post/${post.id}`);
     };
 

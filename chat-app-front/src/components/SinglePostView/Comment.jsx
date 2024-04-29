@@ -49,6 +49,3 @@ const Comment = ({ comment }) => {
 };
 
 export default Comment;
-
-// COMPONENT FOR USERNAME IF NEEDED
-// <Text color='textBlack' fontWeight='bold'>{comment.user.username}</Text>

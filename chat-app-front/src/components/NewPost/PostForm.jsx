@@ -6,8 +6,6 @@ import { useNavigate } from "react-router-native";
 import { CREATE_POST } from "../../graphql/mutations";
 
 import Text from "../Text";
-import Button from "../Button";
-
 import theme from "../../theme";
 
 
@@ -52,13 +50,11 @@ const PostForm = () => {
 
     const handleSubmit = async () => {
         try {
-            //console.log('Post pushed');
             // CREATE NEW POST
             await createPost({ variables: { text } });
-            //NAVIGATE TO FEED
+            // NAVIGATE TO FEED
             navigate('/');
         } catch (error) {
-            //console.error('Error creating post:', error.message);
             Alert.alert('Failed to create post', 'Post can not be empty');
         }
     };

@@ -1,7 +1,5 @@
 import { StyleSheet, View, TextInput as NativeTextInput, Image } from "react-native";
 
-import Text from "../Text";
-
 import theme from "../../theme";
 
 const styles = StyleSheet.create({
@@ -24,6 +22,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 15
       },
 });
+
 
 const SearchBar = () => {
     return (

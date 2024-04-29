@@ -3,9 +3,7 @@ import { StyleSheet, View, Alert, TextInput as NativeTextInput, Platform, Pressa
 import { useNavigate } from "react-router-native";
 import useLogin from '../../hooks/useLogin';
 
-//import Button from "../Button";
 import Text from "../Text";
-
 import theme from "../../theme";
 
 const styles = StyleSheet.create({
@@ -74,8 +72,6 @@ const SignInForm = ({ setToken, setMode }) => {
     };
 
     const handleNavigationToSignUp = () => {
-        //console.log('Sign up pushed');
-        
         setMode('sign-up');
     };
 

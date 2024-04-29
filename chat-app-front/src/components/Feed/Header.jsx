@@ -3,8 +3,7 @@ import { useQuery } from '@apollo/client';
 import { GET_USER } from "../../graphql/queries";
 import Text from "../Text";
 
-import theme from "../../theme";
-//USER IMAGE IF ACCOUNT HAS NO IMAGE URI
+// USER IMAGE IF ACCOUNT HAS NO IMAGE URI
 import defaultImage from '../../../assets/icons8-user-90.png';
 
 const styles = StyleSheet.create({
@@ -15,7 +14,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         paddingTop: 5,
         paddingBottom: 5,
-        //backgroundColor: theme.colors.bloodishred
     },
     userContainer: {
         flexDirection: 'row',
